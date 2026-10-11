@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Thanks for signing up — En Linea</title>
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+<!-- TRACKING: Fire the PACKAGES campaign conversion here if you track conversions by page view. -->
+</head>
+<body>
+<nav class="lp-nav" aria-label="Main">
+  <div class="nav-row">
+    <a class="logo" href="{{ url_for('home') }}" aria-label="En Linea home">En <span>Linea</span></a>
+    <div class="nav-links"><a class="keep" href="{{ url_for('packages') }}">Packages</a></div>
+  </div>
+</nav>
+<main class="thanks" id="main">
+  <div class="wrap">
+    <div class="thanks-panel">
+      <div class="check-big" aria-hidden="true">✓</div>
+      <h1 data-thanks-title>You're in.</h1>
+      <p data-thanks-sub>Thanks — your account manager will reach out within one business day.</p>
+      <ol class="next-steps">
+        <li><span class="mono">STEP 1</span><b>15-min call</b><p>We confirm scope, access and goals.</p></li>
+        <li><span class="mono">STEP 2</span><b>We build</b><p>Accounts, strategy and tracking set up within days.</p></li>
+        <li><span class="mono">STEP 3</span><b>Monthly reporting</b><p>Your numbers in your client dashboard on the 5th of every month.</p></li>
+      </ol>
+      <div class="hero-actions">
+        <a class="btn-primary" href="{{ url_for('packages') }}">Back to the packages</a>
+        <a class="btn-ghost" href="{{ url_for('home') }}">Visit enlineacreative.com</a>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+  (function () {
+    var last = null;
+    try { last = JSON.parse(sessionStorage.getItem('enlinea_last_signup') || 'null'); } catch (e) {}
+    if (!last) return;
+    var first = (last.name || '').trim().split(' ')[0];
+    if (first) document.querySelector('[data-thanks-title]').textContent = 'You\u2019re in, ' + first + '.';
+    if (last.via === 'email') document.querySelector('[data-thanks-sub]').textContent = 'Your email app opened with your details filled in. Press send there so we receive them. If it didn\u2019t open, email info@enlineacreative.com.';
+  })();
+</script>
+</body>
+</html>

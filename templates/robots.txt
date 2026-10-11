@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /client/
+Disallow: /admin/
+Disallow: /thank-you.html
+Disallow: /geo-ai-ads-thank-you.html
+Sitemap: https://enlineacreative.com/sitemap.xml

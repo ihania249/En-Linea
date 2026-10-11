@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>En Linea — Growth, Reach &amp; Rank Packages</title>
+<meta name="description" content="Three flat-fee packages from En Linea: Growth for Meta and Google Ads, Reach for video strategy, Rank for AI search visibility. $1,000 a month each. Run a free audit first.">
+<meta name="theme-color" content="#F7F5F0">
+<meta property="og:title" content="En Linea — Growth, Reach & Rank Packages">
+<meta property="og:description" content="Three ways to grow, one flat monthly fee. See where you stand with a free audit.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://enlineacreative.com/packages">
+<meta property="og:image" content="{{ url_for('static', filename='og-card.jpg') }}">
+<link rel="canonical" href="https://enlineacreative.com/packages">
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+<!-- TRACKING: paste the Meta Pixel and Google tag for the PACKAGES campaign here.
+     Keep them separate from geo-ai-ads.html (SRS 1.2: separate assets, separate conversion goals).
+     Events fired by the page: dataLayer lead_submitted / audit_completed, and fbq Lead / AuditCompleted. -->
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="ticker-dot"></span>COLOMBO <span data-clock="Asia/Colombo" data-label="IST">IST</span></span>
+    <span class="ticker-item"><span class="ticker-dot"></span>VANCOUVER <span data-clock="America/Vancouver" data-label="PT">PT</span></span>
+    <span class="ticker-item"><span class="ticker-dot"></span>10 YEARS RUNNING PAID MEDIA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TWO OFFICES, ONE ACCOUNT MANAGER</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>FREE AUDIT IN ABOUT A MINUTE</span>
+  </div>
+</div>
+
+<nav class="lp-nav" aria-label="Main">
+  <div class="nav-row">
+    <a class="logo" href="{{ url_for('home') }}" aria-label="En Linea home">En <span>Linea</span></a>
+    <div class="nav-links">
+      <a href="#packages">Packages</a>
+      <a href="#audit">Free audit</a>
+      <a href="#results">Results</a>
+      <a class="keep" href="{{ url_for('client_login') }}">Client login</a>
+      <a href="#signup" class="nav-cta">Get started →</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Colombo → Vancouver · Since 2016</span>
+        <h1>Three ways to <em>grow</em>, one flat monthly fee.</h1>
+        <p class="hero-sub">Pick the package that matches where your business needs help right now — running ads, building reach, or getting found by AI search. No contracts. No guesswork. Just a straight monthly rate.</p>
+        <div class="hero-actions">
+          <a href="#packages" class="btn-primary">See the 3 packages</a>
+          <a href="#audit" class="btn-ghost">Get a free audit first</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-panel-label">// Why agencies like us get replaced</div>
+        <div class="stat-row">
+          <div class="stat-num">0</div>
+          <div class="stat-label">long-term<br>contracts required</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num" data-price="growth">$1,000</div>
+          <div class="stat-label">flat fee<br>per package, per month</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">10 yrs</div>
+          <div class="stat-label">running paid media<br>for real businesses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="proof-strip">
+  <div class="wrap">
+    <span class="proof-label">Trusted by brands across retail, travel &amp; automotive</span>
+    <ul class="proof-logos">
+      <li>The Body Shop</li>
+      <li>CTX Travel</li>
+      <li>W Tires</li>
+      <li>Travel360</li>
+      <li>Towmaster</li>
+    </ul>
+  </div>
+</div>
+
+<section class="packages" id="packages" aria-labelledby="packages-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">The packages</span>
+      <h2 id="packages-title">Built to be picked, not customized to death.</h2>
+      <p>Every package is $1,000/month, flat. Choose one, choose all three — either way you know exactly what you're paying and exactly what you're getting.</p>
+    </div>
+
+    <div class="pkg-grid">
+      <!-- GROWTH -->
+      <article class="pkg-card" aria-labelledby="pkg-growth">
+        <span class="pkg-tag">SPEND</span>
+        <h3 id="pkg-growth">Growth</h3>
+        <p class="pkg-blurb">We manage and optimize your Meta and Google Ads accounts, built for businesses ready to put real budget behind performance marketing.</p>
+        <div class="pkg-price"><span data-price="growth">$1,000</span><span class="cents">/mo</span></div>
+        <div class="pkg-price-note">for ad spend up to $10,000/mo</div>
+        <ul class="pkg-list">
+          <li>Full Meta &amp; Google Ads management</li>
+          <li>Campaign structure &amp; audience strategy</li>
+          <li>Weekly optimization &amp; budget pacing</li>
+          <li>GA4-verified performance reporting</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <details class="pkg-month">
+          <summary>What a month looks like</summary>
+          <p>A restructured Meta and Google Ads account, new audience and keyword targeting, weekly bid and budget adjustments, and a monthly report showing cost per result and return on ad spend.</p>
+        </details>
+        <button class="pkg-btn" type="button" data-signup="growth">Sign up for Growth</button>
+        <button class="pkg-audit" type="button" data-audit-open="growth"><span>Audit my ads first</span></button>
+      </article>
+
+      <!-- REACH -->
+      <article class="pkg-card featured" aria-labelledby="pkg-reach">
+        <span class="pkg-tag">REACH</span>
+        <h3 id="pkg-reach">Reach</h3>
+        <p class="pkg-blurb">We design the video strategy that gets your business seen — content pillars, hooks, and a publishing plan. Execution runs on-demand, on your terms.</p>
+        <div class="pkg-price"><span data-price="reach">$1,000</span><span class="cents">/mo</span></div>
+        <div class="pkg-price-note">strategy &amp; direction, execution on-demand</div>
+        <ul class="pkg-list">
+          <li>Full-funnel video content strategy</li>
+          <li>Platform-specific hook &amp; format planning</li>
+          <li>Monthly content calendar</li>
+          <li>Performance review &amp; iteration</li>
+          <li>On-demand execution support</li>
+        </ul>
+        <details class="pkg-month">
+          <summary>What a month looks like</summary>
+          <p>A monthly content calendar of video ideas mapped to platforms, 3 to 5 scripted hooks per video, a shot list your team (or an on-demand editor) can film from, and a review of what performed after posting.</p>
+        </details>
+        <button class="pkg-btn" type="button" data-signup="reach">Sign up for Reach</button>
+        <button class="pkg-audit" type="button" data-audit-open="reach"><span>Audit my content first</span></button>
+      </article>
+
+      <!-- RANK -->
+      <article class="pkg-card" aria-labelledby="pkg-rank">
+        <span class="pkg-tag">RANK</span>
+        <h3 id="pkg-rank">Rank</h3>
+        <p class="pkg-blurb">We make your business visible across AI platforms — ChatGPT, Gemini, AI Overviews — and get you AI-ready before you start advertising there.</p>
+        <div class="pkg-price"><span data-price="rank">$1,000</span><span class="cents">/mo</span></div>
+        <div class="pkg-price-note">AI visibility &amp; readiness, ongoing</div>
+        <ul class="pkg-list">
+          <li>AI platform visibility audit</li>
+          <li>Structured content &amp; entity optimization</li>
+          <li>Cross-platform presence building</li>
+          <li>Monthly AI-ranking report</li>
+          <li>Early access to AI ad readiness</li>
+        </ul>
+        <details class="pkg-month">
+          <summary>What a month looks like</summary>
+          <p>An AI visibility audit showing whether you currently appear in ChatGPT, Gemini and AI Overviews answers for your category, updated business listings and structured content to fix the gaps, and a monthly report on ranking movement.</p>
+        </details>
+        <button class="pkg-btn" type="button" data-signup="rank">Sign up for Rank</button>
+        <button class="pkg-audit" type="button" data-audit-open="rank"><span>Audit my AI visibility first</span></button>
+      </article>
+    </div>
+
+    <div class="pkg-aside">
+      <p><span class="mono">Local business?</span>Grow your Google reviews and show up when people ask AI for a recommendation.</p>
+      <a href="{{ url_for('geo_ai_ads') }}">See GEO &amp; AI Ads, <span data-price="geo">$799</span>/mo</a>
+    </div>
+  </div>
+</section>
+
+<section class="audit-band" id="audit" aria-labelledby="audit-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">Free audit</span>
+      <h2 id="audit-title">See where you stand before you pick.</h2>
+      <p>Enter your website and where you sell. We compare you with businesses like yours, show what's holding you back, and what the next 3 to 6 months could look like.</p>
+    </div>
+    <div class="audit" data-audit data-audit-package="choose" data-form-source="packages-page-audit">
+      <ol class="audit-steps" data-audit-steps aria-label="Audit progress"></ol>
+      <div class="audit-body" data-audit-body aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="results" aria-labelledby="results-title">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">Client results</span>
+      <h2 id="results-title">Six months of numbers, by industry.</h2>
+      <p>Leads, ad spend and cost per lead across the accounts we manage. Tap an industry to hide or show it.</p>
+    </div>
+    <div class="chart-card" data-growth-chart>
+      <div class="chart-top">
+        <div class="seg" role="group" aria-label="Choose what to show">
+          <button type="button" data-metric="leads" aria-pressed="true">Leads</button>
+          <button type="button" data-metric="spend" aria-pressed="false">Ad spend</button>
+          <button type="button" data-metric="cpl" aria-pressed="false">Cost per lead</button>
+        </div>
+        <div class="chart-legend" data-chart-legend role="group" aria-label="Industries"></div>
+      </div>
+      <div class="chart-canvas" data-chart-canvas></div>
+      <div class="chart-tip" data-chart-tip hidden></div>
+      <p class="chart-summary" data-chart-summary aria-live="polite"></p>
+      <p class="chart-note" data-chart-note>Illustrative figures while client accounts are connected to live reporting.</p>
+      <details>
+        <summary>View the figures as a table</summary>
+        <!-- <div data-chart-table></div> -->
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:44px;">
+      <span class="section-tag">How it starts</span>
+      <h2 class="sm" id="how-title">From sign-up to live campaign, fast.</h2>
+    </div>
+    <ol class="how-grid">
+      <li class="how-step">
+        <span class="mono">STEP 1</span>
+        <h3>Pick a package</h3>
+        <p>Choose Growth, Reach, or Rank based on what your business needs most right now.</p>
+      </li>
+      <li class="how-step">
+        <span class="mono">STEP 2</span>
+        <h3>15-min call</h3>
+        <p>We confirm scope, access, and goals — no lengthy onboarding decks.</p>
+      </li>
+      <li class="how-step">
+        <span class="mono">STEP 3</span>
+        <h3>We build</h3>
+        <p>Your account manager sets up accounts, strategy, and tracking within days.</p>
+      </li>
+      <li class="how-step">
+        <span class="mono">STEP 4</span>
+        <h3>Monthly reporting</h3>
+        <p>Straight numbers from GA4 and platform data, in your client dashboard on the 5th of every month.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="testimonials" aria-labelledby="t-title">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:40px;">
+      <span class="section-tag">What clients say</span>
+      <h2 class="sm" id="t-title">Ten years, still hands-on.</h2>
+    </div>
+    <div class="t-grid">
+      <figure class="t-card">
+        <div class="stars" aria-label="5 out of 5">★★★★★</div>
+        <blockquote class="t-quote">"They rebuilt our tracking from scratch and finally showed us where our revenue was actually coming from. No more guessing."</blockquote>
+        <figcaption><div class="t-name">Retail brand owner</div><div class="t-role">Sri Lanka · Growth package</div></figcaption>
+      </figure>
+      <figure class="t-card">
+        <div class="stars" aria-label="5 out of 5">★★★★★</div>
+        <blockquote class="t-quote">"The video strategy alone changed how we think about content. We went from posting randomly to having a plan every month."</blockquote>
+        <figcaption><div class="t-name">Travel company founder</div><div class="t-role">Colombo · Reach package</div></figcaption>
+      </figure>
+      <figure class="t-card">
+        <div class="stars" aria-label="5 out of 5">★★★★★</div>
+        <blockquote class="t-quote">"Being one of the first in our space to show up in AI search results has already brought in customers our competitors haven't seen yet."</blockquote>
+        <figcaption><div class="t-name">Automotive services client</div><div class="t-role">Vancouver · Rank package</div></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="signup" id="signup" aria-labelledby="signup-title">
+  <div class="wrap">
+    <div class="signup-panel">
+      <div class="signup-left">
+        <h2 id="signup-title">Let's get your business moving.</h2>
+        <p>Fill this in and your account manager will reach out within one business day to confirm scope and get started.</p>
+        <ul class="signup-trust">
+          <li><span class="check" aria-hidden="true">✓</span> No long-term contract</li>
+          <li><span class="check" aria-hidden="true">✓</span> Flat $1,000/month, no surprise fees</li>
+          <li><span class="check" aria-hidden="true">✓</span> 10 years managing real ad budgets</li>
+          <li><span class="check" aria-hidden="true">✓</span> Teams in Colombo &amp; Vancouver</li>
+        </ul>
+        <div class="signup-contact">
+          <a href="tel:+94773629151">LK +94 77 362 9151</a>
+          <a href="tel:+17787896601">CA +1 778 789 6601</a>
+          <a href="mailto:info@enlineacreative.com">info@enlineacreative.com</a>
+        </div>
+      </div>
+      <div>
+        <form data-signup-form data-form-source="packages-page" data-thank-you="{{ url_for('thank_you') }}" novalidate>
+          <p class="plan-note" data-plan-note aria-live="polite"></p>
+          <div class="form-group">
+            <label for="package">Package</label>
+            <select id="package" name="package" required>
+              <option value="" disabled selected>Select a package</option>
+              <option value="Growth">Growth — Meta &amp; Google Ads ($1,000/mo)</option>
+              <option value="Reach">Reach — Video Strategy ($1,000/mo)</option>
+              <option value="Rank">Rank — AI Visibility ($1,000/mo)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Full name</label>
+              <input type="text" id="fname" name="full_name" autocomplete="name" placeholder="Jane Silva" required>
+            </div>
+            <div class="form-group">
+              <label for="business">Business name</label>
+              <input type="text" id="business" name="business_name" autocomplete="organization" placeholder="Your company" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="you@business.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone / WhatsApp</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+1 604 000 0000" required>
+            </div>
+          </div>
+          <input type="hidden" name="audit_plan" value="">
+          <p class="form-status" data-form-status role="alert"></p>
+          <button type="submit" class="form-submit">Sign up now</button>
+          <p class="form-fine">By submitting, you agree to be contacted by En Linea about your enquiry.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="lp-footer">
+  <div class="wrap footer-row">
+    <a class="logo" href="{{ url_for('home') }}">En <span>Linea</span></a>
+    <div class="footer-meta">
+      <a href="{{ url_for('geo_ai_ads') }}">GEO &amp; AI Ads</a>
+      <a href="{{ url_for('client_login') }}">Client login</a>
+      <span>enlineacreative.com · Colombo · Vancouver</span>
+    </div>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='config.js') }}"></script>
+<script src="{{ url_for('static', filename='landing.js') }}"></script>
+<script src="{{ url_for('static', filename='leads.js') }}"></script>
+<script src="{{ url_for('static', filename='audit.js') }}"></script>
+<script src="{{ url_for('static', filename='growth-chart.js') }}"></script>
+</body>
+</html>

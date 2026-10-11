@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Review monthly invoices — En Linea internal</title>
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='portal.css') }}">
+</head>
+<body class="app">
+<header class="app-bar">
+  <div class="nav-row">
+    <span class="logo">En <span>Linea</span> <span class="mono-s" style="color:rgba(247,245,240,.55);margin-left:8px">internal</span></span>
+    <div class="who"><div style="text-align:right"><b>Monthly review</b><small>Invoices and reports</small></div></div>
+  </div>
+</header>
+<div class="demo-strip">Preview with sample data. In production this page sits behind staff sign-in, and publishing emails the client.</div>
+
+<main class="wrap" id="main" style="padding-top:40px">
+  <div class="page-head">
+    <div>
+      <h1>August 2026 cycle</h1>
+      <p>Generated automatically on 5 Sep 2026. Nothing below is visible to clients or emailed until someone presses Publish.</p>
+    </div>
+    <div class="totals" data-counts></div>
+  </div>
+  <div class="review-grid">
+    <nav class="queue" aria-label="Clients in this cycle" data-queue></nav>
+    <section class="review-panel" data-panel aria-live="polite"></section>
+  </div>
+</main>
+
+<script>
+(function () {
+  const ITEMS = [
+    { id: 'lk', client: 'Lanka Home Goods', currency: 'LKR', status: 'review', packages: 'Growth + Rank',
+      lines: [
+        { kind: 'ad_spend', label: 'Google Ads spend, August', source: 'Google Ads via Windsor.ai', synced: '4 Sep, 23:40', ok: true, amount: 179900 },
+        { kind: 'ad_spend', label: 'Meta Ads spend, August', source: 'Meta Ads via Windsor.ai', synced: '4 Sep, 23:40', ok: true, amount: 151300 },
+        { kind: 'fee', label: 'Growth package fee', amount: 300000 },
+        { kind: 'fee', label: 'Rank package fee', amount: 300000 }
+      ],
+      report: '2 platforms, 4 actions logged, 123 leads' },
+    { id: 'ht', client: 'Harbour Travel', currency: 'USD', status: 'review', packages: 'Growth',
+      lines: [
+        { kind: 'ad_spend', label: 'Google Ads spend, August', source: 'Google Ads via Windsor.ai', synced: '4 Sep, 23:40', ok: true, amount: 642.18 },
+        { kind: 'ad_spend', label: 'Meta Ads spend, August', source: 'Meta Ads via Windsor.ai', synced: 'No data returned', ok: false, amount: 0 },
+        { kind: 'fee', label: 'Growth package fee', amount: 1000 }
+      ],
+      report: '2 platforms, Meta data missing' },
+    { id: 'ca', client: 'Fraser Valley Auto', currency: 'USD', status: 'published', publishedBy: 'Nadeesha', publishedAt: '5 Sep, 10:12', packages: 'Growth + Reach',
+      lines: [
+        { kind: 'ad_spend', label: 'Google Ads spend, August', source: 'Google Ads via Windsor.ai', synced: '4 Sep, 23:40', ok: true, amount: 1240.55 },
+        { kind: 'ad_spend', label: 'Meta Ads spend, August', source: 'Meta Ads via Windsor.ai', synced: '4 Sep, 23:40', ok: true, amount: 865.10 },
+        { kind: 'ad_spend', label: 'TikTok Ads spend, August', source: 'Entered manually (TikTok not connected)', synced: 'Manual', ok: true, amount: 410 },
+        { kind: 'fee', label: 'Growth package fee', amount: 1000 },
+        { kind: 'fee', label: 'Reach package fee', amount: 1000 },
+        { kind: 'other', label: 'On-demand video editing (3 videos)', amount: 270 }
+      ],
+      report: '3 platforms, 3 actions logged, 87 results' }
+  ];
+  const LABEL = { review: 'Awaiting review', flagged: 'Flagged', published: 'Published' };
+  const CHIP = { review: 'review', flagged: 'flagged', published: 'published' };
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const money = (n, c) => { const v = Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); return c === 'USD' ? '$' + v : c + ' ' + v; };
+  let current = ITEMS.find((i) => i.status !== 'published').id;
+  const queue = document.querySelector('[data-queue]');
+  const panel = document.querySelector('[data-panel]');
+
+  function renderQueue() {
+    queue.innerHTML = ITEMS.map((i) => `<button type="button" data-id="${i.id}" aria-current="${i.id === current}"><b>${esc(i.client)}</b><span class="chip chip-${CHIP[i.status]}">${LABEL[i.status]}</span></button>`).join('');
+    const c = (s) => ITEMS.filter((i) => i.status === s).length;
+    document.querySelector('[data-counts]').innerHTML = `<div><span>To review</span><b>${c('review')}</b></div><div><span>Flagged</span><b>${c('flagged')}</b></div><div><span>Published</span><b>${c('published')}</b></div>`;
+  }
+
+  function renderPanel() {
+    const i = ITEMS.find((x) => x.id === current);
+    const bad = i.lines.filter((l) => l.ok === false);
+    const total = i.lines.reduce((s, l) => s + l.amount, 0);
+    const locked = i.status === 'published';
+    panel.innerHTML = `
+      <span class="chip chip-${CHIP[i.status]}">${LABEL[i.status]}</span>
+      <h2 style="margin-top:14px">${esc(i.client)}</h2>
+      <p class="muted">${esc(i.packages)} · billed in ${i.currency} · report: ${esc(i.report)}</p>
+      ${bad.length ? `<div class="notice warn" style="margin-top:18px"><span class="dot"></span><div><b>Data problem.</b> ${bad.map((l) => esc(l.label)).join(', ')} came back empty. Check the connection in Windsor.ai before publishing.</div></div>` : ''}
+      ${i.status === 'flagged' ? `<div class="notice warn" style="margin-top:18px"><span class="dot"></span><div><b>Flagged:</b> ${esc(i.note)}</div></div>` : ''}
+      ${locked ? `<div class="notice info" style="margin-top:18px"><span class="dot"></span><div>Published by ${esc(i.publishedBy)} on ${esc(i.publishedAt)}. The client can see this invoice and report.</div></div>` : ''}
+      <table class="inv-lines" style="margin-top:22px">
+        <thead><tr><th scope="col">Line</th><th scope="col" class="num">Amount</th></tr></thead>
+        <tbody>${i.lines.map((l) => `<tr><td>${esc(l.label)}${l.source ? `<span class="src">${esc(l.source)} · <span class="${l.ok ? 'src-ok' : 'src-warn'}">${l.ok ? '✓ ' : '⚠ '}${esc(l.synced)}</span></span>` : ''}</td><td class="num">${money(l.amount, i.currency)}</td></tr>`).join('')}</tbody>
+        <tfoot><tr><td>Total</td><td class="num">${money(total, i.currency)}</td></tr></tfoot>
+      </table>
+      ${locked ? '' : `
+      <div class="verify">
+        <label><input type="checkbox" data-check> I've compared each ad spend line with the platform's own billing page.</label>
+        <label><input type="checkbox" data-check> The fees match this client's current contract.</label>
+        <label><input type="checkbox" data-check> I've read the performance report and it's accurate.</label>
+      </div>
+      <div class="inv-actions">
+        <button type="button" class="btn-primary" data-publish disabled>Publish to client</button>
+        <button type="button" class="btn-ghost" data-flag>Flag an issue</button>
+      </div>
+      <div class="flag-box" data-flag-box hidden style="margin-top:16px">
+        <label class="mono-s" for="note">What's wrong?</label>
+        <textarea id="note" placeholder="e.g. Meta spend missing, re-sync and regenerate"></textarea>
+        <button type="button" class="btn-s" data-save-flag style="margin-top:10px">Save flag</button>
+      </div>
+      <p class="inv-status-msg">${bad.length ? 'Publishing is blocked until every ad spend line has synced.' : 'Publishing makes this visible in the client dashboard and emails the client.'}</p>`}`;
+
+    if (locked) return;
+    const checks = panel.querySelectorAll('[data-check]');
+    const pub = panel.querySelector('[data-publish]');
+    const update = () => { pub.disabled = bad.length > 0 || !Array.from(checks).every((c) => c.checked); };
+    checks.forEach((c) => c.addEventListener('change', update));
+    pub.addEventListener('click', () => {
+      i.status = 'published'; i.publishedBy = 'You'; i.publishedAt = 'just now';
+      const next = ITEMS.find((x) => x.status !== 'published');
+      if (next) current = next.id;
+      renderQueue(); renderPanel();
+    });
+    panel.querySelector('[data-flag]').addEventListener('click', () => { panel.querySelector('[data-flag-box]').hidden = false; panel.querySelector('#note').focus(); });
+    panel.querySelector('[data-save-flag]').addEventListener('click', () => {
+      const note = panel.querySelector('#note').value.trim();
+      if (!note) { panel.querySelector('#note').focus(); return; }
+      i.status = 'flagged'; i.note = note; renderQueue(); renderPanel();
+    });
+  }
+
+  queue.addEventListener('click', (e) => { const b = e.target.closest('[data-id]'); if (b) { current = b.getAttribute('data-id'); renderQueue(); renderPanel(); } });
+  renderQueue(); renderPanel();
+})();
+</script>
+</body>
+</html>

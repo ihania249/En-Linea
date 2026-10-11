@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Your dashboard — En Linea</title>
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='portal.css') }}">
+</head>
+<body class="app">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="app-bar">
+  <div class="nav-row">
+    <a class="logo" href="{{ url_for('home') }}" aria-label="Dashboard home">En <span>Linea</span></a>
+    <div class="who">
+      <div style="text-align:right"><b data-client-name>…</b><small data-user-email></small></div>
+      <button type="button" data-signout>Sign out</button>
+    </div>
+  </div>
+</header>
+<div class="demo-strip" data-demo-strip hidden>Sample account with example data. <button type="button" data-switch>Switch sample account</button></div>
+
+<main id="main" class="wrap">
+  <nav class="tabs" aria-label="Dashboard sections">
+    <a href="#overview" data-tab="overview">Overview</a>
+    <a href="#contracts" data-tab="contracts">Contracts</a>
+    <a href="#billing" data-tab="billing">Billing</a>
+    <a href="#performance" data-tab="performance">This month</a>
+  </nav>
+  <div data-view><p class="loading">Loading your account…</p></div>
+</main>
+
+<footer class="app-foot">
+  <div class="wrap footer-row">
+    <span class="mono-s">Questions about your account? <a href="mailto:info@enlineacreative.com" class="text-link">info@enlineacreative.com</a></span>
+    <span class="mono-s">LK +94 77 362 9151 · CA +1 778 789 6601</span>
+  </div>
+</footer>
+
+<dialog class="invoice" data-invoice-dialog aria-labelledby="inv-title"></dialog>
+
+<script src="{{ url_for('static', filename='config.js') }}"></script>
+<script src="{{ url_for('static', filename='portal-api.js') }}"></script>
+<script src="{{ url_for('static', filename='portal.js') }}"></script>
+</body>
+</html>

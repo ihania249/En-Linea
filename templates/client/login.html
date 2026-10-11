@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Client login — En Linea</title>
+<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='portal.css') }}">
+</head>
+<body class="app">
+<div class="login-shell">
+  <aside class="login-side">
+    <a class="logo" href="{{ url_for('home') }}" aria-label="En Linea home">En <span>Linea</span></a>
+    <div>
+      <h1>Your account, in one place.</h1>
+      <p>Everything an En Linea client needs to check, without emailing us to ask.</p>
+      <ul>
+        <li><span class="mono">CONTRACTS</span>Your start and end dates, with a heads-up before renewal.</li>
+        <li><span class="mono">BILLING</span>Every invoice, with ad spend itemised. Pay in one click.</li>
+        <li><span class="mono">PERFORMANCE</span>What we did this month on Google, Meta and TikTok, and what it produced.</li>
+      </ul>
+    </div>
+    <span class="mono-s" style="color:rgba(247,245,240,.45)">Colombo · Vancouver</span>
+  </aside>
+
+  <main class="login-main" id="main">
+    <div class="login-card">
+      <h2>Sign in</h2>
+      <p>Use the email address your account manager set up for you.</p>
+
+      <div class="seg-login" role="tablist" aria-label="Sign-in method">
+        <button type="button" role="tab" id="tab-pw" aria-selected="true" aria-controls="pane-pw">Password</button>
+        <button type="button" role="tab" id="tab-link" aria-selected="false" aria-controls="pane-link">Email me a link</button>
+      </div>
+
+      <p class="login-msg" data-msg role="status"></p>
+
+      <form id="pane-pw" role="tabpanel" aria-labelledby="tab-pw" data-pw-form>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button class="btn-primary" type="submit">Sign in</button>
+      </form>
+
+      <form id="pane-link" role="tabpanel" aria-labelledby="tab-link" data-link-form hidden>
+        <label for="email2">Email</label>
+        <input id="email2" name="email" type="email" autocomplete="username" required>
+        <button class="btn-primary" type="submit">Email me a sign-in link</button>
+      </form>
+
+      <div class="demo-box" data-demo hidden>
+        <p><b style="font-family:'Space Grotesk';font-size:15px">Preview mode.</b> The client database isn't connected yet, so sign-in is switched off. Open a sample account to see the dashboard. Each one only shows its own data.</p>
+        <div data-demo-list></div>
+      </div>
+
+      <p style="margin-top:28px"><a class="back-link" href="{{ url_for('home') }}">← Back to enlineacreative.com</a></p>
+    </div>
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='config.js') }}"></script>
+<script src="{{ url_for('static', filename='portal-api.js') }}"></script>
+<script>
+(function () {
+  const api = window.PortalAPI;
+  const msg = document.querySelector('[data-msg]');
+  const say = (text, kind) => { msg.textContent = text; msg.className = 'login-msg ' + (kind || ''); };
+  const tabs = [document.getElementById('tab-pw'), document.getElementById('tab-link')];
+  const panes = [document.getElementById('pane-pw'), document.getElementById('pane-link')];
+  tabs.forEach((t, i) => t.addEventListener('click', () => {
+    tabs.forEach((x, j) => x.setAttribute('aria-selected', String(i === j)));
+    panes.forEach((p, j) => { p.hidden = i !== j; });
+    say('');
+  }));
+
+  if (!api.live) {
+    const box = document.querySelector('[data-demo]');
+    box.hidden = false;
+    document.querySelector('[data-demo-list]').innerHTML = api.demoAccounts.map((a) =>
+      `<button type="button" data-demo-key="${a.key}"><b>${a.client}</b><small>${a.label}</small></button>`).join('');
+    box.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-demo-key]');
+      if (!b) return;
+      api.demoLogin(b.getAttribute('data-demo-key'));
+      location.href = '/client';
+    });
+  }
+
+  document.querySelector('[data-pw-form]').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target;
+    if (!f.reportValidity()) return;
+    if (!api.live) { say('Sign-in isn\'t connected yet. Open a sample account below to preview the dashboard.', 'err'); return; }
+    const btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'Signing in…';
+    try {
+      await api.login(f.email.value.trim(), f.password.value);
+      location.href = '/client';
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Sign in';
+      say(err.code === 401 ? 'That email and password don\'t match. Check them, or use "Email me a link".' : 'We couldn\'t reach the server. Check your connection and try again.', 'err');
+    }
+  });
+
+  document.querySelector('[data-link-form]').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target;
+    if (!f.reportValidity()) return;
+    if (!api.live) { say('Sign-in isn\'t connected yet. Open a sample account below to preview the dashboard.', 'err'); return; }
+    try {
+      await api.requestMagicLink(f.email.value.trim());
+    } catch (err) { /* same message either way, so the form can't be used to test which emails exist */ }
+    say('If that email belongs to a client account, a sign-in link is on its way. It works for 15 minutes.', 'ok');
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>En Linea — Growth, Reach & Rank Packages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12151B;
+    --paper:#F7F5F0;
+    --paper-dim:#EFECE3;
+    --signal:#FF4E32;
+    --signal-dim:#FFE3DD;
+    --deep:#1E4D3D;
+    --deep-dim:#DCE9E3;
+    --steel:#6B7280;
+    --line: rgba(18,21,27,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.02em;
+    line-height:0.98;
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ===== TICKER BAR ===== */
+  .ticker{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    padding:9px 0;
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid rgba(247,245,240,0.1);
+  }
+  .ticker-inner{
+    display:inline-flex;
+    gap:48px;
+    animation:scroll-left 32s linear infinite;
+  }
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .ticker-item{display:inline-flex; align-items:center; gap:8px; opacity:0.85;}
+  .ticker-dot{width:5px; height:5px; border-radius:50%; background:var(--signal); display:inline-block;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,245,240,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:22px;
+    letter-spacing:-0.01em;
+  }
+  .logo span{color:var(--signal);}
+  .nav-cta{
+    background:var(--ink);
+    color:var(--paper);
+    padding:10px 20px;
+    border-radius:100px;
+    font-size:14px;
+    font-weight:600;
+    transition:background 0.2s ease;
+  }
+  .nav-cta:hover{background:var(--signal);}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:88px 0 64px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:end;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--steel);
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px; height:1px;
+    background:var(--signal);
+  }
+  .hero h1{
+    font-size:clamp(42px, 6.4vw, 84px);
+    font-weight:700;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--signal);
+  }
+  .hero-sub{
+    font-size:18px;
+    color:var(--steel);
+    max-width:480px;
+    margin-top:22px;
+    line-height:1.55;
+  }
+  .hero-actions{
+    display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--signal);
+    color:var(--paper);
+    padding:16px 30px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:15px;
+    display:inline-block;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow:0 0 0 0 rgba(255,78,50,0);
+    border:none;
+    cursor:pointer;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px -8px rgba(255,78,50,0.55);}
+  .btn-ghost{
+    border:1.5px solid var(--ink);
+    padding:15px 28px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:15px;
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--paper);}
+
+  .hero-panel{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:18px;
+    padding:30px;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .hero-panel-label{
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(247,245,240,0.55);
+    margin-bottom:18px;
+  }
+  .stat-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:14px 0;
+    border-top:1px solid rgba(247,245,240,0.14);
+  }
+  .stat-row:first-of-type{border-top:none;}
+  .stat-num{font-size:26px; font-weight:600; font-family:'Space Grotesk',sans-serif;}
+  .stat-label{font-size:12px; color:rgba(247,245,240,0.6); text-align:right;}
+
+  /* ===== LOGO / PROOF STRIP ===== */
+  .proof-strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:26px 0;
+  }
+  .proof-strip .wrap{
+    display:flex; align-items:center; gap:38px; flex-wrap:wrap; justify-content:space-between;
+  }
+  .proof-label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em;
+    color:var(--steel); text-transform:uppercase; white-space:nowrap;
+  }
+  .proof-logos{
+    display:flex; gap:34px; flex-wrap:wrap; align-items:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:16px; color:var(--ink); opacity:0.55;
+  }
+
+  /* ===== PACKAGES ===== */
+  .packages{padding:96px 0 40px;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-tag{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.06em;
+    color:var(--signal); text-transform:uppercase; margin-bottom:14px; display:block;
+  }
+  .section-head h2{font-size:clamp(32px,4vw,48px); font-weight:700;}
+  .section-head p{color:var(--steel); margin-top:16px; font-size:16px; line-height:1.6;}
+
+  .pkg-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  .pkg-card{
+    border-radius:20px;
+    padding:34px 28px 28px;
+    display:flex; flex-direction:column;
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--paper-dim);
+    transition:transform 0.2s ease;
+  }
+  .pkg-card:hover{transform:translateY(-4px);}
+  .pkg-card.featured{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+  .pkg-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:0.1em;
+    padding:5px 11px;
+    border-radius:5px;
+    display:inline-block;
+    width:fit-content;
+    margin-bottom:22px;
+    font-weight:600;
+  }
+  .pkg-card:nth-child(1) .pkg-tag{background:var(--signal-dim); color:var(--signal);}
+  .pkg-card.featured .pkg-tag{background:var(--signal); color:var(--ink);}
+  .pkg-card:nth-child(3) .pkg-tag{background:var(--deep-dim); color:var(--deep);}
+
+  .pkg-card h3{font-size:26px; font-weight:700; margin-bottom:8px;}
+  .pkg-blurb{font-size:14.5px; color:var(--steel); line-height:1.55; margin-bottom:22px; flex-grow:0;}
+  .pkg-card.featured .pkg-blurb{color:rgba(247,245,240,0.65);}
+
+  .pkg-price{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:44px; font-weight:700;
+    display:flex; align-items:baseline; gap:6px;
+    margin-bottom:4px;
+  }
+  .pkg-price .cents{font-size:16px; font-weight:500; color:var(--steel);}
+  .pkg-card.featured .pkg-price .cents{color:rgba(247,245,240,0.6);}
+  .pkg-price-note{font-size:12.5px; color:var(--steel); margin-bottom:26px; font-family:'JetBrains Mono',monospace;}
+  .pkg-card.featured .pkg-price-note{color:rgba(247,245,240,0.5);}
+
+  .pkg-list{list-style:none; margin-bottom:28px; flex-grow:1;}
+  .pkg-list li{
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:14.5px; padding:8px 0;
+    border-top:1px solid var(--line);
+  }
+  .pkg-card.featured .pkg-list li{border-top:1px solid rgba(247,245,240,0.14);}
+  .pkg-list li:first-child{border-top:none;}
+  .pkg-list li::before{
+    content:'—';
+    color:var(--signal);
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .pkg-card.featured .pkg-list li::before{color:var(--signal);}
+
+  .pkg-btn{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    padding:15px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:14.5px;
+    border:none;
+    cursor:pointer;
+    width:100%;
+    transition:background 0.2s ease, transform 0.15s ease;
+  }
+  .pkg-btn:hover{background:var(--signal); transform:translateY(-2px);}
+  .pkg-card.featured .pkg-btn{background:var(--signal); color:var(--ink);}
+  .pkg-card.featured .pkg-btn:hover{background:var(--paper);}
+
+  /* ===== HOW IT WORKS ===== */
+  .how{padding:96px 0; border-top:1px solid var(--line); margin-top:80px;}
+  .how-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+  }
+  .how-step{padding-top:20px; border-top:2px solid var(--ink);}
+  .how-step .mono{font-size:12px; color:var(--signal); display:block; margin-bottom:12px;}
+  .how-step h4{font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; margin-bottom:8px;}
+  .how-step p{font-size:14px; color:var(--steel); line-height:1.55;}
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials{padding:20px 0 96px;}
+  .t-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  }
+  .t-card{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+  }
+  .stars{color:var(--signal); font-size:14px; margin-bottom:16px; letter-spacing:2px;}
+  .t-quote{font-size:15px; line-height:1.6; margin-bottom:20px;}
+  .t-name{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14.5px;}
+  .t-role{font-size:12.5px; color:var(--steel); font-family:'JetBrains Mono',monospace; margin-top:2px;}
+
+  /* ===== FORM ===== */
+  .signup{
+    padding:20px 0 110px;
+  }
+  .signup-panel{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:24px;
+    padding:56px;
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:50px;
+  }
+  .signup-left h2{font-size:clamp(28px,3.4vw,38px); font-weight:700; margin-bottom:16px;}
+  .signup-left p{color:rgba(247,245,240,0.65); font-size:15px; line-height:1.6; margin-bottom:28px;}
+  .signup-trust{display:flex; flex-direction:column; gap:12px;}
+  .signup-trust-item{display:flex; gap:10px; align-items:center; font-size:13.5px; color:rgba(247,245,240,0.8);}
+  .check{
+    width:18px; height:18px; border-radius:50%;
+    background:var(--signal);
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; flex-shrink:0; color:var(--ink); font-weight:700;
+  }
+
+  .form-group{margin-bottom:16px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  label{
+    display:block; font-size:12px; font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.04em; text-transform:uppercase; color:rgba(247,245,240,0.55);
+    margin-bottom:7px;
+  }
+  input, select{
+    width:100%;
+    background:rgba(247,245,240,0.06);
+    border:1px solid rgba(247,245,240,0.18);
+    border-radius:10px;
+    padding:13px 14px;
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;
+    outline:none;
+    transition:border-color 0.2s ease;
+  }
+  input::placeholder{color:rgba(247,245,240,0.32);}
+  input:focus, select:focus{border-color:var(--signal);}
+  select option{background:var(--ink); color:var(--paper);}
+  .form-submit{
+    background:var(--signal);
+    color:var(--ink);
+    width:100%;
+    padding:16px;
+    border-radius:12px;
+    border:none;
+    font-weight:700;
+    font-size:15px;
+    cursor:pointer;
+    margin-top:8px;
+    transition:transform 0.15s ease;
+  }
+  .form-submit:hover{transform:translateY(-2px);}
+  .form-fine{font-size:11.5px; color:rgba(247,245,240,0.4); margin-top:12px; text-align:center;}
+  .success-msg{
+    display:none;
+    text-align:center;
+    padding:40px 20px;
+  }
+  .success-msg .check-big{
+    width:56px;height:56px;border-radius:50%;background:var(--signal);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 18px;
+    color:var(--ink); font-size:26px; font-weight:700;
+  }
+  .success-msg h3{font-family:'Space Grotesk',sans-serif; font-size:22px; margin-bottom:8px;}
+  .success-msg p{color:rgba(247,245,240,0.6); font-size:14px;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0;
+  }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-row .logo{font-size:18px;}
+  .footer-meta{font-size:13px; color:var(--steel); font-family:'JetBrains Mono',monospace;}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .pkg-grid{grid-template-columns:1fr;}
+    .how-grid{grid-template-columns:1fr 1fr;}
+    .t-grid{grid-template-columns:1fr;}
+    .signup-panel{grid-template-columns:1fr; padding:32px 24px;}
+    .form-row{grid-template-columns:1fr;}
+    .proof-strip .wrap{flex-direction:column; align-items:flex-start; gap:18px;}
+  }
+
+  :focus-visible{outline:2px solid var(--signal); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="ticker-dot"></span>COLOMBO 06:42 IST</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>VANCOUVER 18:12 PST</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>10 YEARS RUNNING PAID MEDIA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TWO OFFICES, ONE ACCOUNT MANAGER</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>COLOMBO 06:42 IST</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>VANCOUVER 18:12 PST</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>10 YEARS RUNNING PAID MEDIA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TWO OFFICES, ONE ACCOUNT MANAGER</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-row">
+    <div class="logo">En <span>Linea</span></div>
+    <a href="#signup" class="nav-cta">Get started →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Colombo → Vancouver · Since 2016</span>
+        <h1>Three ways to <em>grow</em>, one flat monthly fee.</h1>
+        <p class="hero-sub">Pick the package that matches where your business needs help right now — running ads, building reach, or getting found by AI search. No contracts. No guesswork. Just a straight monthly rate.</p>
+        <div class="hero-actions">
+          <a href="#packages" class="btn-primary">See the 3 packages</a>
+          <a href="#signup" class="btn-ghost">Talk to us first</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-panel-label">// Why agencies like us get replaced</div>
+        <div class="stat-row">
+          <div class="stat-num">0</div>
+          <div class="stat-label">long-term<br>contracts required</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">$1,000</div>
+          <div class="stat-label">flat fee<br>per package, per month</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">10 yrs</div>
+          <div class="stat-label">running paid media<br>for real businesses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="proof-strip">
+  <div class="wrap">
+    <span class="proof-label">Trusted by brands across retail, travel &amp; automotive</span>
+    <div class="proof-logos">
+      <span>The Body Shop</span>
+      <span>CTX Travel</span>
+      <span>W Tires</span>
+      <span>Travel360</span>
+      <span>Towmaster</span>
+    </div>
+  </div>
+</div>
+
+<section class="packages" id="packages">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">The packages</span>
+      <h2>Built to be picked, not customized to death.</h2>
+      <p>Every package is $1,000/month, flat. Choose one, choose all three — either way you know exactly what you're paying and exactly what you're getting.</p>
+    </div>
+
+    <div class="pkg-grid">
+      <!-- GROWTH -->
+      <div class="pkg-card">
+        <span class="pkg-tag">SPEND</span>
+        <h3>Growth</h3>
+        <p class="pkg-blurb">We manage and optimize your Meta and Google Ads accounts, built for businesses ready to put real budget behind performance marketing.</p>
+        <div class="pkg-price">$1,000<span class="cents">/mo</span></div>
+        <div class="pkg-price-note">for ad spend up to $10,000/mo</div>
+        <ul class="pkg-list">
+          <li>Full Meta &amp; Google Ads management</li>
+          <li>Campaign structure &amp; audience strategy</li>
+          <li>Weekly optimization &amp; budget pacing</li>
+          <li>GA4-verified performance reporting</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <button class="pkg-btn" data-package="Growth">Sign up for Growth</button>
+      </div>
+
+      <!-- REACH -->
+      <div class="pkg-card featured">
+        <span class="pkg-tag">REACH</span>
+        <h3>Reach</h3>
+        <p class="pkg-blurb">We design the video strategy that gets your business seen — content pillars, hooks, and a publishing plan. Execution runs on-demand, on your terms.</p>
+        <div class="pkg-price">$1,000<span class="cents">/mo</span></div>
+        <div class="pkg-price-note">strategy &amp; direction, execution on-demand</div>
+        <ul class="pkg-list">
+          <li>Full-funnel video content strategy</li>
+          <li>Platform-specific hook &amp; format planning</li>
+          <li>Monthly content calendar</li>
+          <li>Performance review &amp; iteration</li>
+          <li>On-demand execution support</li>
+        </ul>
+        <button class="pkg-btn" data-package="Reach">Sign up for Reach</button>
+      </div>
+
+      <!-- RANK -->
+      <div class="pkg-card">
+        <span class="pkg-tag">RANK</span>
+        <h3>Rank</h3>
+        <p class="pkg-blurb">We make your business visible across AI platforms — ChatGPT, Gemini, AI Overviews — and get you AI-ready before you start advertising there.</p>
+        <div class="pkg-price">$1,000<span class="cents">/mo</span></div>
+        <div class="pkg-price-note">AI visibility &amp; readiness, ongoing</div>
+        <ul class="pkg-list">
+          <li>AI platform visibility audit</li>
+          <li>Structured content &amp; entity optimization</li>
+          <li>Cross-platform presence building</li>
+          <li>Monthly AI-ranking report</li>
+          <li>Early access to AI ad readiness</li>
+        </ul>
+        <button class="pkg-btn" data-package="Rank">Sign up for Rank</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:44px;">
+      <span class="section-tag">How it starts</span>
+      <h2 style="font-size:clamp(26px,3vw,34px);">From sign-up to live campaign, fast.</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step">
+        <span class="mono">STEP 1</span>
+        <h4>Pick a package</h4>
+        <p>Choose Growth, Reach, or Rank based on what your business needs most right now.</p>
+      </div>
+      <div class="how-step">
+        <span class="mono">STEP 2</span>
+        <h4>15-min call</h4>
+        <p>We confirm scope, access, and goals — no lengthy onboarding decks.</p>
+      </div>
+      <div class="how-step">
+        <span class="mono">STEP 3</span>
+        <h4>We build</h4>
+        <p>Your account manager sets up accounts, strategy, and tracking within days.</p>
+      </div>
+      <div class="how-step">
+        <span class="mono">STEP 4</span>
+        <h4>Monthly reporting</h4>
+        <p>Straight numbers from GA4 and platform data — no vanity metrics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:40px;">
+      <span class="section-tag">What clients say</span>
+      <h2 style="font-size:clamp(26px,3vw,34px);">Ten years, still hands-on.</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p class="t-quote">"They rebuilt our tracking from scratch and finally showed us where our revenue was actually coming from. No more guessing."</p>
+        <div class="t-name">Retail brand owner</div>
+        <div class="t-role">Sri Lanka · Growth package</div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p class="t-quote">"The video strategy alone changed how we think about content. We went from posting randomly to having a plan every month."</p>
+        <div class="t-name">Travel company founder</div>
+        <div class="t-role">Colombo · Reach package</div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p class="t-quote">"Being one of the first in our space to show up in AI search results has already brought in customers our competitors haven't seen yet."</p>
+        <div class="t-name">Automotive services client</div>
+        <div class="t-role">Vancouver · Rank package</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="signup" id="signup">
+  <div class="wrap">
+    <div class="signup-panel">
+      <div class="signup-left">
+        <h2>Let's get your business moving.</h2>
+        <p>Fill this in and your account manager will reach out within one business day to confirm scope and get started.</p>
+        <div class="signup-trust">
+          <div class="signup-trust-item"><span class="check">✓</span> No long-term contract</div>
+          <div class="signup-trust-item"><span class="check">✓</span> Flat $1,000/month, no surprise fees</div>
+          <div class="signup-trust-item"><span class="check">✓</span> 10 years managing real ad budgets</div>
+          <div class="signup-trust-item"><span class="check">✓</span> Teams in Colombo &amp; Vancouver</div>
+        </div>
+      </div>
+      <div class="signup-form-wrap">
+        <form id="signupForm">
+          <div class="form-group">
+            <label for="package">Package</label>
+            <select id="package" required>
+              <option value="" disabled selected>Select a package</option>
+              <option value="Growth">Growth — Meta &amp; Google Ads ($1,000/mo)</option>
+              <option value="Reach">Reach — Video Strategy ($1,000/mo)</option>
+              <option value="Rank">Rank — AI Visibility ($1,000/mo)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Full name</label>
+              <input type="text" id="fname" placeholder="Jane Silva" required>
+            </div>
+            <div class="form-group">
+              <label for="business">Business name</label>
+              <input type="text" id="business" placeholder="Your company" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="you@business.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone / WhatsApp</label>
+              <input type="tel" id="phone" placeholder="+1 604 000 0000" required>
+            </div>
+          </div>
+          <button type="submit" class="form-submit">Sign up now</button>
+          <p class="form-fine">By submitting, you agree to be contacted by En Linea about your enquiry.</p>
+        </form>
+        <div class="success-msg" id="successMsg">
+          <div class="check-big">✓</div>
+          <h3>You're in.</h3>
+          <p>Thanks — your account manager will reach out within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo">En <span>Linea</span></div>
+    <div class="footer-meta">enlineacreative.com · Colombo · Vancouver</div>
+  </div>
+</footer>
+
+<script>
+  // Pre-fill package when a card button is clicked
+  document.querySelectorAll('.pkg-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const pkg = btn.getAttribute('data-package');
+      document.getElementById('package').value = pkg;
+      document.getElementById('signup').scrollIntoView({behavior:'smooth'});
+      document.getElementById('fname').focus({preventScroll:true});
+    });
+  });
+
+  // Handle form submit (client-side demo — wire to your backend/Zapier/Make endpoint)
+  document.getElementById('signupForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
